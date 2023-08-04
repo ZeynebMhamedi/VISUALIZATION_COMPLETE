@@ -110,7 +110,6 @@ window.loadForestVis3 = loadForestVis3;
 
 
 function generateColor(depth) {
-    // Utilisez depth pour changer la teinte. 
     // Modulo 360 est utilisé pour s'assurer que la valeur reste entre 0 et 360
     let hue = depth * 100 % 360;
     return "hsl(" + hue + ", 100%, 75%)";

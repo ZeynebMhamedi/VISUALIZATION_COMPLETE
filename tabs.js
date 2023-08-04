@@ -1,3 +1,4 @@
+// Au chargement de la fenêtre, nous supprimons l'élément 'selectedForest' du local storage
 window.onload = function() {
     localStorage.removeItem('selectedForest');
 };
@@ -5,50 +6,50 @@ window.onload = function() {
 function openVis(evt, visName) {
     var i, tabcontent, tablinks;
 
-    // Get all elements with class="tabcontent" and hide them
+    // Récupère tous les éléments avec la classe="tabcontent" et les cache
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
 
-    // Get all elements with class="tablinks" and remove the class "active"
+    // Récupère tous les éléments avec la classe="tablinks" et retire la classe "active"
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 
-    // Show the current tab, and add an "active" class to the button that opened the tab
+    // Montre l'onglet actuel et ajoute la classe "active" au bouton qui a ouvert l'onglet
     document.getElementById(visName).style.display = "block";
     evt.currentTarget.className += " active";
     
-    // Remove existing visualization script if exists
+    // Supprime le script de visualisation existant s'il existe
     let oldScript = document.getElementById('vis-script');
     if (oldScript) {
         document.head.removeChild(oldScript);
     }
 
-    // Create a new script tag
+    // Crée un nouveau tag script
     let script = document.createElement('script');
-    script.src = visName + '.js'; // Set source to appropriate JavaScript file
-    script.id = 'vis-script'; // Set id so we can remove it later
-    script.type = "module"; // Add the type of module
+    script.src = visName + '.js'; // Définit la source du fichier JavaScript approprié
+    script.id = 'vis-script'; // Définit l'id pour pouvoir le supprimer plus tard
+    script.type = "module"; // Ajoute le type de module
     script.onload = function() {
-        // Listener for forest select change
+        // Écouteur pour le changement de sélection de la forêt
         const forestSelect = document.getElementById('forestSelect');
         if (forestSelect) {
             forestSelect.addEventListener('change', async function(event) {
                 const { value } = event.target;
     
-                // Save the selection in localStorage
+                // Enregistre la sélection dans le local storage
                 localStorage.setItem('selectedForest', value);
     
-                // Check which script is currently loaded
+                // Vérifie quel script est actuellement chargé
                 let currentScript = document.getElementById('vis-script');
                 if (currentScript) {
                     let scriptName = currentScript.src.split('/').pop().split('.')[0];
-                    console.log(scriptName); // for debugging
+                    console.log(scriptName); // pour débogage
     
-                    // Run the appropriate function to load the forest
+                    // Exécute la fonction appropriée pour charger la forêt
                     if (scriptName === 'Vis1') {
                         loadForestVis1(value);
                     } else if (scriptName === 'Vis2') {
@@ -59,7 +60,7 @@ function openVis(evt, visName) {
                 }
             });
     
-            // Call the loadForest function immediately after the script is loaded
+            // Appelle la fonction loadForest immédiatement après le chargement du script
             let selectedForest = localStorage.getItem('selectedForest');
             if (selectedForest) {
                 let scriptName = script.src.split('/').pop().split('.')[0];
@@ -74,14 +75,14 @@ function openVis(evt, visName) {
         }
     }
     
-    document.head.appendChild(script); // Add new script tag to head
+    document.head.appendChild(script); // Ajoute le nouveau tag script à l'élément head
 
-    // New code to load tree data for Vis3
+    // Nouveau code pour charger les données de l'arbre pour Vis3
     if (visName === 'Vis3') {
         let treeId = localStorage.getItem('treeId');
         
     }
 }
 
-// Get the element with id="defaultOpen" and click on it
+// Récupère l'élément avec id="defaultOpen" et clique dessus
 document.getElementById("defaultOpen").click();

@@ -190,7 +190,7 @@ export function generateTree(treeData, treeId, treeLayout) {
           .attr('x', boundingCircle.centerX - 10)  // Positionne le centre de l'icône au centre du cercle
           .attr('y', boundingCircle.centerY - boundingCircle.radius + 20)  // Positionne le centre de l'icône juste au-dessus du cercle
           .attr('font-size', '20px')
-          .attr('opacity', 0) // Hide the eye by default
+          .attr('opacity', 0) 
           .style('cursor', 'pointer')
           .attr('data-tree-id', tree.id)
           .on('click', function(event, d) {
@@ -198,20 +198,17 @@ export function generateTree(treeData, treeId, treeLayout) {
             let treeId = this.getAttribute('data-tree-id'); // Récupérez l'identifiant de l'arbre à partir de l'attribut de données
             treeId = treeId.split('-')[0];
             console.log('Eye clicked for tree', treeId);
-            // Store the tree id in localStorage
             localStorage.setItem('treeId', treeId);
             localStorage.setItem('source', 'Vis2');
-            // Trigger a click on the Vis3 tab
+            // Déclencher un clic sur l'onglet Vis3
             document.querySelector('button[onclick="openVis(event, \'Vis3\')"]').click();
         });
         // Ajoutez les événements de la souris au groupe, pas à l'icône
         boundingCircleGroup.on('mouseover', function(event, d) {
-          // Show the eye when the mouse is over the circle
-          d3.select(this).select('.eye-icon').attr('opacity', 1);  // Utilisez la classe pour sélectionner l'icône de l'oeil
+          d3.select(this).select('.eye-icon').attr('opacity', 1); 
         })
         .on('mouseout', function(event, d) {
-          // Hide the eye when the mouse leaves the circle
-          d3.select(this).select('.eye-icon').attr('opacity', 0);  // Utilisez la classe pour sélectionner l'icône de l'oeil
+          d3.select(this).select('.eye-icon').attr('opacity', 0);  
         });
         
           // Dessiner les nœuds de chaque arbre (sauf la racine)
@@ -435,19 +432,18 @@ export function generateTree(treeData, treeId, treeLayout) {
             treeId = treeId.split('-')[0];
             console.log('Eye clicked for tree', treeId);
             localStorage.setItem('treeId', treeId);
-            // Call loadForestVis3 after updating localStorage
+            // Appel de loadForestVis3 après la mise à jour de localStorage
             loadForestVis3(forestName); // Remplacez forestName par le nom actuel de la forêt
             document.querySelector('button[onclick="openVis(event, \'Vis3\')"]').click();
         });
         
         // Ajoutez les événements de la souris au groupe, pas à l'icône
         boundingCircleGroup.on('mouseover', function(event, d) {
-          // Show the eye when the mouse is over the circle
-          d3.select(this).select('.eye-icon').attr('opacity', 1);  // Utilisez la classe pour sélectionner l'icône de l'oeil
-        })
+          
+          d3.select(this).select('.eye-icon').attr('opacity', 1);  
+         })
         .on('mouseout', function(event, d) {
-          // Hide the eye when the mouse leaves the circle
-          d3.select(this).select('.eye-icon').attr('opacity', 0);  // Utilisez la classe pour sélectionner l'icône de l'oeil
+          d3.select(this).select('.eye-icon').attr('opacity', 0);  
         });
     
         // Dessiner les nœuds de chaque arbre (sauf la racine)

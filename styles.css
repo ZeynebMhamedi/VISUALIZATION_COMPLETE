@@ -89,7 +89,7 @@ body {
 /* Styles pour Vis2 */
 
 #Vis2 {
-    padding-top: 100px; /* Ajoutez cette ligne */
+    padding-top: 100px; 
 }
 
 .axis-label {
@@ -151,8 +151,8 @@ body {
   position: absolute;
   top: 40px;
   left: 400px;
-  color: black;    /* Set the text color */
-  background: yellow; /* Set the background color */
+  color: black;    
+  background: yellow; 
 }
 
 .range-wrap {
@@ -220,7 +220,7 @@ body {
   padding: 15px; /* Espace entre le contenu du rectangle et ses bords */
   transition: all 0.3s ease; /* Fait en sorte que les changements de style se fassent en douceur */
   display: inline-block;
-  max-width: 1000px;  /* Les rectangles ne dépasseront pas 500 pixels, même s'ils contiennent beaucoup de texte */
+  max-width: 1000px;  /* Les rectangles ne dépasseront pas 1000 pixels, même s'ils contiennent beaucoup de texte */
 }
 
 .tree-node:hover {

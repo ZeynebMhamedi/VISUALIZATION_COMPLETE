@@ -260,27 +260,26 @@ let featureImportance; // pour stocker les indices des caractéristiques
    featureImportance = data;
      
      // définir la valeur max de l'input range
-     
      numFeaturesSlider.max = featureImportance.length;
      
      // Afficher la valeur max du curseur dans la console
      console.log('La valeur max du curseur est :', numFeaturesSlider.max);
-     numFeaturesSlider.value = 0;  // initialize slider with a value of 0
+     numFeaturesSlider.value = 0;  // initialiser le slider avec la valeur 0
  
-     let bubble = document.querySelector(".bubble");  // initialize bubble variable
-     setBubble(numFeaturesSlider, bubble);  // initialize bubble
- 
+     let bubble = document.querySelector(".bubble");  // initialise la variable bubble
+     setBubble(numFeaturesSlider, bubble);  
+
      // Mettre à jour la bulle chaque fois que le curseur change
      numFeaturesSlider.addEventListener('input', () => {
          setBubble(numFeaturesSlider, bubble);
-         // Log the new slider value
+         // Enregistre la nouvelle valeur du curseur
          console.log("La valeur actuelle du curseur est :", numFeaturesSlider.value);
  
          // Supprimer la classe 'button-selected' de tous les boutons
          bestButton.classList.remove('button-selected');
          worstButton.classList.remove('button-selected');
      });
-     // Activer le bouton 'best' maintenant que la requête fetch est terminée
+   // Activer le bouton 'best' maintenant que la requête fetch est terminée
    bestButton.disabled = false;
    worstButton.disabled = false;
 
@@ -345,8 +344,8 @@ let featureImportance; // pour stocker les indices des caractéristiques
       
       console.log('Bouton Worst sélectionné');
       console.log(worstButton.classList);
-      console.log("WORST BUTTON : ", worstButton.outerHTML); // Doit afficher l'élément du bouton, pas null ou undefined
-      console.log("worstButton.onclick", worstButton.onclick); // Doit afficher la fonction de l'événement click, p as null ou undefined
+      console.log("WORST BUTTON : ", worstButton.outerHTML); 
+      console.log("worstButton.onclick", worstButton.onclick); 
 
        // Récupérer toutes les caractéristiques
        selectedFeatures = caractéristiques;
@@ -362,9 +361,9 @@ let featureImportance; // pour stocker les indices des caractéristiques
       console.log('Bouton Worst déjà sélectionné');   
       console.log('Vouc avez cliqué sur le boutton Worst !');
       console.log(worstButton.classList);
-      console.log("WORST BUTTON : ", worstButton.outerHTML); // Doit afficher l'élément du bouton, pas null ou undefined
-      console.log("worstButton.onclick", worstButton.onclick); // Doit afficher la fonction de l'événement click, p as null ou undefined
-    
+      console.log("WORST BUTTON : ", worstButton.outerHTML); 
+      console.log("worstButton.onclick", worstButton.onclick); 
+
        // Récupérer le nombre de caractéristiques à partir de la valeur du slider
        let numFeatures = numFeaturesSlider.value;
        console.log("Nombre de pires caractéristiques sélectionnées :", numFeatures);
@@ -389,9 +388,6 @@ fetch(`Data/feature_values_${selectedData}.json`)
   .then(response => response.json())
   .then(data => {
     featureImportanceValues = data;
-
-    // Votre code supplémentaire ici pour utiliser les valeurs d'importance des caractéristiques
-
     console.log('featureImportanceValues:', featureImportanceValues);
   })
   .catch(error => console.error(error));
@@ -420,5 +416,5 @@ closeModalButton.addEventListener('click', function() {
   });
 });
 }
-// Rendez la fonction accessible globalement
+// Rend la fonction accessible globalement
 window.loadForestVis2 = loadForestVis2;
