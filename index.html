@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Arbre_Groupes_Accuracy_Triés</title>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://unpkg.com/d3@5.16.0/dist/d3.min.js"></script>
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- Select2 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />  
+  <!-- Select2 JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+</head>
+
+<body>
+  <div style="position: absolute; top: 80px; left: 10px;">
+    <p style="display: inline-block; margin-right: 10px; font-weight: bold;"> Choose a forest :</p>
+    <select id="forestSelect" style="display: inline-block; font-size: 16px; padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+      <option value="" selected disabled>select</option>
+      <option value="full_gea">full_gea</option>
+      <option value="full_geii">full_geii</option>
+      <option value="full_info">full_info</option>
+      <option value="full_icomco">full_icomco</option>
+      <option value="full_tcc">full_tcc</option>
+      <option value="full_tcn">full_tcn</option>
+    </select>
+  </div>
+
+  <div class="tab">
+    <button class="tablinks" id="defaultOpen" onclick="openVis(event, 'Vis1')">Student Visualisation</button>
+    <button class="tablinks" onclick="openVis(event, 'Vis2')">Forest Visualisation</button>
+    <button class="tablinks" onclick="openVis(event, 'Vis3')">Zoom Tree</button>
+  </div>
+
+  <div id="Vis1" class="tabcontent">
+    <div id="mainContainer">
+        <div id="listContainer">
+            <div id="studentContainer">
+                <p>Choose students :</p>
+                <div id="selectAllContainer">
+                    <input type="checkbox" id="selectAll" name="selectAll">
+                    <label for="selectAll">Select All</label>
+                </div>
+                <div id="deselectAllContainer">
+                    <input type="checkbox" id="deselectAll" name="deselectAll">
+                    <label for="deselectAll">Deselect All</label>
+                </div>
+                <div id="checkListScrollableContainer">
+                    <div id="checkListContainer">
+                        <!-- Check list will be added here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div id="svgContainer" style="width:100%; height:100%; overflow-x: auto">
+            <div id="innerContainer" style="display: inline-block; min-height: 100%;">
+              <h1 id="studentTitle"></h1>
+              <svg id="eleves_svg"></svg>
+            </div>
+        </div>
+          
+    </div>
+</div>
+
+  <div id="Vis2" class="tabcontent">
+    <div class="scroll-container">
+        <svg id="arbre_svg"></svg>
+        <div class="legende-container">
+          <p>Classes:</p>
+          <div id="legende"></div>
+        </div>
+      </div>
+      <div id="select-container">
+        <label for="groupSelect">Choose a group of accuracy:</label>
+        <select id="groupSelect">
+          <option value="all">All groups</option>
+          <option value="group1">Group 1</option>
+          <option value="group2">Group 2</option>
+          <option value="group3">Group 3</option>
+        </select> 
+        <div id="features-container" style="display: flex; align-items: center; gap: 10px;">
+          <label for="FeatureSelect">Choose a caracteristic</label>
+          <select id="FeatureSelect">
+            <option value="">-- Choose a caracteristic --</option>
+          </select>
+          <label for="numFeatures">Number of caracteristics</label>
+          <div class="range-wrap">
+            <input type="range" id="numFeatures" min="1">
+            <output class="bubble"></output>
+          </div>    
+          <div id="numFeaturesDisplay"></div>
+          <button id="bestButton">Best</button>
+          <button id="worstButton">Worst</button>
+          <button id="allButton">Classification of characteristics</button>
+    
+        </div>
+      </div>
+      <div id="selected-feature-display"></div>
+    
+      <!-- Modale Bootstrap -->
+      <div class="modal fade" id="featureModal" tabindex="-1" aria-labelledby="featureModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="featureModalLabel">Ranking of features in order of importance</h5>
+              <button type="button" class="btn btn-secondary" id="closeModalButton">Close</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+              <!-- Le contenu de la modale sera généré dynamiquement -->
+            </div>
+            <div class="modal-footer">
+              
+            </div>
+          </div>
+        </div>
+      </div>    
+</div>
+
+<div id="Vis3" class="tabcontent">
+  <svg id="treeVisualization"></svg>
+  <div id="infoDisplay" class="tree-container">
+    <div class="tree-node">
+  </div>    
+  <div id="tree-graphic"></div>
+  </div>
+  
+
+  <script id="bundleScript" src="bundle.js"></script>
+  <script src="tabs.js"></script> <!-- Assuming you put the tab switching code in a file called tabs.js -->
+</body>
+</html>

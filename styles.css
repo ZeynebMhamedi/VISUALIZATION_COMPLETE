@@ -1,0 +1,256 @@
+body {
+    background-color: white;
+}
+
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Styles pour Vis1 */
+
+#mainContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: 60px;
+}
+
+#listContainer {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+#forestContainer {
+    margin-bottom: 10px;
+}
+
+#forestSelect, #forestSelect2 {
+    font-size: 16px;
+    background-color: #f0f0f0;
+    
+}
+
+#forestSelect option:checked, #forestSelect2 option:checked {
+    background: #1c87c9;
+    color: #fff;
+}
+
+#studentContainer {
+    padding: 10px;
+    top: 100px;
+}
+
+#checkListScrollableContainer {
+    width: 160px;
+    height: 600px;
+    overflow: auto;
+}
+
+#svgContainer {
+    overflow: auto; 
+    height: 100vh; 
+    width: 100%; 
+}
+
+#innerContainer {
+    height: 100%;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+#eleves_svg {
+    flex-grow: 1;
+    height: auto;
+}
+
+/* Styles pour Vis2 */
+
+#Vis2 {
+    padding-top: 100px; /* Ajoutez cette ligne */
+}
+
+.axis-label {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.group-label {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  fill: black;
+}
+
+.node.toggled circle {
+  fill: yellow;
+}
+
+.link {
+  stroke-width: 1.5px;
+}
+
+.tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 5px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.node.high-accuracy circle {
+  fill: red;
+}
+
+.node.medium-accuracy circle {
+  fill: blue;
+}
+
+.node.low-accuracy circle {
+  fill: gray;
+}
+
+#select-container, #select-container2 {
+  position: absolute;
+  top: 120px;
+  left: 10px;
+}
+
+#selected-feature-display, #selected-feature-display2 {
+  position: absolute;
+  top: 40px;
+  left: 400px;
+  color: black;    /* Set the text color */
+  background: yellow; /* Set the background color */
+}
+
+.range-wrap {
+  position: relative;
+}
+
+.bubble {
+  position: absolute;
+  transform: translate(-70%, -70%);
+}
+
+.legende-container {
+  position: absolute;
+  top: 0px;
+  left: 400px;
+  display: flex;
+  margin-top: 120px;
+}
+
+.legende {
+  position: relative; 
+  left: 60px; 
+  padding: 0px;
+  display: flex; 
+  flex-wrap: wrap;
+}
+
+.legende-item {
+  padding: 5px;
+  color: white;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.button-selected {
+  background-color: green;
+  color: white;
+}
+
+.button-unselected {
+  background-color: white;
+  color: black;
+}
+
+.modal-dialog {
+  max-width: 800px;
+}
+
+.modal-lg {
+  max-width: 90%; 
+}
+
+
+/* Styles pour Vis3 */
+
+
+/* Style des rectangles de nœuds */
+.tree-node {
+  background-color: #ffffff; /* Couleur de fond */
+  border-radius: 15px; /* Arrondit les coins */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15); /* Ajoute une petite ombre */
+  margin: 10px; /* Espace autour du rectangle */
+  padding: 15px; /* Espace entre le contenu du rectangle et ses bords */
+  transition: all 0.3s ease; /* Fait en sorte que les changements de style se fassent en douceur */
+  display: inline-block;
+  max-width: 1000px;  /* Les rectangles ne dépasseront pas 500 pixels, même s'ils contiennent beaucoup de texte */
+}
+
+.tree-node:hover {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25); /* Augmente l'ombre lorsque la souris est sur le rectangle */
+  transform: scale(1.02); /* Augmente légèrement la taille du rectangle lorsque la souris est dessus */
+}
+
+/* Style des lignes de branches */
+.tree-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.tree-line {
+  stroke: #000;
+  stroke-width: 2;
+}
+
+/* Style de la mise en forme de l'arbre hiérarchique */
+.tree-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #fff;
+}
+
+/* Style pour les flèches (utilisez un caractère spécial de flèche) */
+.tree-arrow::before {
+  content: '\2192'; /* Code Unicode pour une flèche pointant vers la droite */
+  padding-right: 5px;
+}
+
